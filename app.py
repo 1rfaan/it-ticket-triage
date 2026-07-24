@@ -46,7 +46,7 @@ if st.button("Predict"):
 
         # Step 2: Assign most likely priority for this category (highest weight)
         weights = priority_weights[predicted_category]
-        predicted_priority = ['P1', 'P2', 'P3'][np.argmax(weights)]
+        predicted_priority = np.random.choice(['P1', 'P2', 'P3'], p=weights)
         sla_target = sla_hours[predicted_priority]
         doc_len = len(cleaned.split())
 
