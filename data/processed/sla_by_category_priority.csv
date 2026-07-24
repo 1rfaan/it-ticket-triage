@@ -1,0 +1,25 @@
+Topic_group,priority,ticket_count,breach_rate_pct
+Access,P1,2109,11.6
+Access,P2,3575,11.3
+Access,P3,1441,10.8
+Administrative rights,P1,271,21.8
+Administrative rights,P2,691,19.8
+Administrative rights,P3,798,21.6
+HR Support,P1,564,14.0
+HR Support,P2,2746,13.4
+HR Support,P3,7605,13.5
+Hardware,P1,4794,34.8
+Hardware,P2,6145,34.6
+Hardware,P3,2678,33.0
+Internal Project,P1,95,31.6
+Internal Project,P2,429,28.4
+Internal Project,P3,1595,28.8
+Miscellaneous,P1,705,20.3
+Miscellaneous,P2,2828,19.2
+Miscellaneous,P3,3527,19.4
+Purchase,P1,132,34.8
+Purchase,P2,623,30.0
+Purchase,P3,1709,31.1
+Storage,P1,673,26.9
+Storage,P2,1264,22.5
+Storage,P3,840,25.5
