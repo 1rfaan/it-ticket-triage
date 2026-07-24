@@ -44,9 +44,25 @@ if st.button("Predict"):
         text_tfidf = tfidf_vectorizer.transform([cleaned])
         predicted_category = ticket_classifier.predict(text_tfidf)[0]
 
-        # Step 2: Assign most likely priority for this category (highest weight)
-        weights = priority_weights[predicted_category]
-        predicted_priority = np.random.choice(['P1', 'P2', 'P3'], p=weights)
+        # Step 2: Detect urgency from ticket text, then assign priority
+        urgent_keywords = ['down', 'critical', 'urgent', 'production', 'outage',
+                             'can\'t access', 'cannot access', 'blocked', 'emergency',
+                             'not working', 'crashed', 'broken', 'asap']
+        routine_keywords = ['requesting', 'would like', 'please add', 'new',
+                              'when possible', 'update my']
+
+        text_lower = cleaned.lower()
+        urgency_score = sum(1 for kw in urgent_keywords if kw in text_lower)
+        routine_score = sum(1 for kw in routine_keywords if kw in text_lower)
+
+        if urgency_score >= 1:
+            predicted_priority = 'P1'
+        elif routine_score >= 1:
+            predicted_priority = 'P3'
+        else:
+            # No clear signal in text — fall back to category's typical priority distribution
+            weights = priority_weights[predicted_category]
+            predicted_priority = np.random.choice(['P1', 'P2', 'P3'], p=weights)
         sla_target = sla_hours[predicted_priority]
         doc_len = len(cleaned.split())
 
